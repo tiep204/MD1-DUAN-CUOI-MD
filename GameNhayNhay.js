@@ -83,15 +83,14 @@ function Obstacle(img, x, y, w, h) {
         }
         if(game.score >1000){
             this.x -= 12
-
-
         }
         if(game.score >2000){
             this.x -= 20
         }
         if (game.score > 10000){
-            chu(1280 / 2, 720 / 2, "50px red", "center", "ban da chien thang",);
-            document.getElementById('play-again').style.display = "inline-block";
+            // chu(1280 / 2, 720 / 2, "50px red", "center", "ban da chien thang",);
+            // document.getElementById('play-again').style.display = "inline-block";
+            alert('ban da chien thang')
         }
 
 
@@ -162,7 +161,7 @@ function gameLoop() {
         // Kiểm tra va chạm với khủng long, nếu va chạm thì game kết thúc
         if (checkVaCham(game.DuLieuGame[i], game.khungLong)) {
             chu(1280 / 2, 720 / 2, "40px Arial", "center", "Bạn Đã thua Cuộc",);
-            let amNhac = new Audio("./audio/adaden.mp3")
+            let amNhac = new Audio("./audio/thiramchoncaichet.mp3")
 
             amNhac.play()
             amThanh.pause();
