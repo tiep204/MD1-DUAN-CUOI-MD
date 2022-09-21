@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <title>Title</title>
+
+  <style>
+
+
+    body {
+
+      background-color: blue;
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      margin: 0;
+      /*overflow: hidden;*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      background-color: deeppink;
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: None;
+      height: 100px;
+      width: 100px;
+      border-radius: 10px 100px / 120px;
+
+    }
+    canvas{
+      /*background-image: url("");*/
+      background-color: white;
+    }
+  </style>
+
+
+</head>
+<body>
+<canvas width="1280" height="720"></canvas>
+<!--<button id="batDau" onclick="choi()">Play!!!</button>-->
+<button id="play-again" onclick="initGame()">play again</button>
+<!--<button id="choi" onclick="reLoad()" >choi lai</button>-->
+
+<script src="GameNhayNhay.js"></script>
+<!--<img src="anh/anhvodai.png" style="position: absolute">-->
+</body>
+</html>
