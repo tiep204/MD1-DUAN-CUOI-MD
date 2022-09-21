@@ -102,8 +102,8 @@ function Obstacle(img, x, y, w, h) {
 //     window.location.reload()
 //
 // }
-let amThanh = new Audio("./audio/teoteoteo.mp3");
 
+let amThanh = new Audio("./audio/teoteoteo.mp3");
 function initGame() {
 
     amThanh.play();
@@ -176,11 +176,10 @@ function gameLoop() {
 
         }
     }
-    //
+
     window.requestAnimationFrame(gameLoop);
 
 }
-checknhanhcham()
 
 ////////TẠO CHƯỚNG NGẠI VẬT MỚI////////
 function genObstacle() {
@@ -207,11 +206,6 @@ function updateScore() {
     chu(1280 - 50, 50, "28px Arial", "right", `Score: ${game.score}`);
 
 }
-function checknhanhcham() {
-    if (game.score > 100) {
-        this.x -= 1000
-    }
-}
 
 function checkVaCham(anh1, anh2) {
     if (anh1.x > anh2.x + anh2.w
@@ -224,6 +218,5 @@ function checkVaCham(anh1, anh2) {
         return true;
     }
 }
-//
-// reLoad()
+
 
