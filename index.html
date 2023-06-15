@@ -1,63 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-  <title>GAME KHỦNG LONG</title>
+    <meta charset="UTF-8">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>GAME KHỦNG LONG</title>
+    <style>
+        body {
+            background-color: blue;
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            /*overflow: hidden;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
+        button {
+            background-color: deeppink;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: None;
+            height: 100px;
+            width: 100px;
+            border-radius: 10px 100px / 120px;
+        }
 
-  <style>
-
-
-    body {
-
-      background-color: blue;
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      margin: 0;
-      /*overflow: hidden;*/
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    button {
-      background-color: deeppink;
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translateX(-50%);
-      display: None;
-      height: 100px;
-      width: 100px;
-      border-radius: 10px 100px / 120px;
-
-    }
-    canvas{
-      /*background-image: url("");*/
-      background-color: white;
-      border-radius: 40px 40px 40px 40px;
-    }
-
-  </style>
-
-
+        canvas {
+            background-color: white;
+            border-radius: 40px 40px 40px 40px;
+        }
+    </style>
 </head>
 <body>
 <canvas width="1280" height="720"></canvas>
-<!--<button id="batDau" onclick="choi()">Play!!!</button>-->
 <button id="play-again" onclick="initGame()">play again</button>
-<!--<button id="choi" onclick="reLoad()" >choi lai</button>-->
-
 <script src="GameNhayNhay.js"></script>
-<!--<img src="anh/anhvodai.png" style="position: absolute">-->
-
-  <h4 style="position: absolute; left: 515px; top: -20px;color: firebrick" > & </h4>
-  <a href="https://www.facebook.com/tiep204nekguys/"><h4 style="position: absolute; left: 1000px; top: -20px;color: firebrick" >Made in:Dang Tran Tiep</h4></a>
-  <a href="https://www.facebook.com/profile.php?id=100001884425051"><h4 style="position: absolute; left: 200px; top: -20px;color: firebrick" >Thầy Đồng Hành: NGUYỄN ĐỒNG CHÍNH</h4></a>
-  <a href="https://www.facebook.com/groups/1574447829618883/user/100005210588329">  <h4 style="position: absolute; left: 535px; top: -20px;color: firebrick" >TRỊNH QUỐC HAI</h4></a>
-
-
+<h4 style="position: absolute; left: 515px; top: -20px;color: firebrick"> & </h4>
+<a href="https://www.facebook.com/tiep204nekguys/"><h4
+        style="position: absolute; left: 1000px; top: -20px;color: firebrick">Made in:Dang Tran Tiep</h4></a>
+<a href="https://www.facebook.com/profile.php?id=100001884425051"><h4
+        style="position: absolute; left: 200px; top: -20px;color: firebrick">Thầy Đồng Hành: NGUYỄN ĐỒNG CHÍNH</h4></a>
+<a href="https://www.facebook.com/groups/1574447829618883/user/100005210588329"><h4
+        style="position: absolute; left: 535px; top: -20px;color: firebrick">TRỊNH QUỐC HAI</h4></a>
 </body>
 </html>

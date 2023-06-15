@@ -1,9 +1,6 @@
-
 let canvas = document.querySelector('canvas'); // Lấy thẻ canvas
 let ctx = canvas.getContext('2d'); // Lấy context 2d
-let game = []; // Object này để chứa dữ liệu game
-
-
+let game = {}; // Object này để chứa dữ liệu game
 function chu(x, y, style, align, content) {
     ctx.textAlign = align;
     ctx.font = style;
@@ -16,6 +13,7 @@ function createImg(src) {
     return image;
 }
 
+//////chỉnh kích thước của màn hình theo từng máy khác nhau////
 function resizeCanvas() {
     if ((window.innerWidth / window.innerHeight) >= (1280 / 720)) {
         canvas.style.width = "";
@@ -35,11 +33,10 @@ function Player(img, x, y, w, h) {
     this.h = h; // Chiều cao
     this.maxDoNhay = 500; // Độ cao nhảy tối đa
     this.DoNhay = "None"; //Trạng thái nhảy
-
     this.update = () => {
         // Nếu trạng thái nhảy là up thì tăng tọa độ y
         if (this.DoNhay === "Up") {
-            this.y += 20;
+            this.y += 10;
             if (this.y >= this.maxDoNhay) {
                 this.y = this.maxDoNhay;
                 this.DoNhay = "Down";
@@ -47,18 +44,18 @@ function Player(img, x, y, w, h) {
         }
         // Nếu trạng thái nhảy là down thì giảm tọa độ y
         if (this.DoNhay === "Down") {
-            this.y -= 10;
+            this.y -= 20;
             if (this.y <= 10) {
                 this.y = 0
                 this.DoNhay = "None";
             }
-
         }
         // Vẽ ảnh trên canvas
         ctx.drawImage(this.img, this.x, 720 - this.y - this.h, this.w, this.h);
     }
 }
 
+////////các chướng ngại vật/////
 function Obstacle(img, x, y, w, h) {
     this.img = createImg(img);
     this.x = x;
@@ -66,7 +63,6 @@ function Obstacle(img, x, y, w, h) {
     this.w = w;
     this.h = h;
     this.active = true;
-
     this.update = () => {
         if (!this.active)
             return;
@@ -75,26 +71,24 @@ function Obstacle(img, x, y, w, h) {
         if (this.x <= -this.w) {
             this.active = false;
         }
-        if(game.score > 200){
-            this.x -=10.1
+        if (game.score > 200) {
+            this.x -= 10
         }
-        if(game.score > 500){
-            this.x -=10.2
+        if (game.score > 500) {
+            this.x -= 10.1
         }
-        if(game.score >1000){
+        if (game.score > 1000) {
             this.x -= 12
         }
-        if(game.score >2000){
+        if (game.score > 2000) {
             this.x -= 20
         }
-        if (game.score > 10000){
+        if (game.score > 10000) {
             // chu(1280 / 2, 720 / 2, "50px red", "center", "ban da chien thang",);
             // document.getElementById('play-again').style.display = "inline-block";
             alert('ban da chien thang')
         }
-
-
-        ctx.drawImage(this.img, this.x, 720 - this.y - this.h, this.w, this.h);
+        ctx.drawImage(this.img, this.x, 720 + this.y - this.h, this.w, this.h);
     }
 }
 
@@ -104,13 +98,11 @@ function Obstacle(img, x, y, w, h) {
 // }
 
 let amThanh = new Audio("./audio/teoteoteo.mp3");
+
 function initGame() {
-
     amThanh.play();
-
     // Ẩn nút chơi lại
     document.getElementById('play-again').style.display = "None";
-
     game.score = 0;
     game.startTime = new Date().getTime();
     // Tạo Player
@@ -126,21 +118,7 @@ function initGame() {
                 game.khungLong.DoNhay = "Up";
         }
     }
-    // window.onkeyup = function (len){
-    //     if (len.keyCode == 38){
-    //     if (game.khungLong.jumpStatus == "None")
-    //         game.khungLong.jumpStatus = "Up";
-    // }
-    // }
-
-
-
     gameLoop();
-
-
-
-
-
 }
 
 initGame();
@@ -162,28 +140,17 @@ function gameLoop() {
         if (checkVaCham(game.DuLieuGame[i], game.khungLong)) {
             chu(1280 / 2, 720 / 2, "40px Arial", "center", "Bạn Đã thua Cuộc",);
             let amNhac = new Audio("./audio/thiramchoncaichet.mp3")
-
             amNhac.play()
             amThanh.pause();
             document.getElementById('play-again').style.display = "inline-block";
-
-
-
             return window.cancelAnimationFrame(gameLoop);
-
-
-
-
         }
     }
-
     window.requestAnimationFrame(gameLoop);
-
 }
 
 ////////TẠO CHƯỚNG NGẠI VẬT MỚI////////
 function genObstacle() {
-
     // Nếu chưa đến thời gian tạo chướng ngại vật mới thì return luôn
     if (game.nextObstacleTmp > new Date().getTime()) return;
     // Tạo sỗ ngẫu nhiên 0 hoặc 1
@@ -200,23 +167,20 @@ function genObstacle() {
     // Cập nhật thời gian sinh chướng ngại vật tiếp theo
     game.nextObstacleTmp = new Date().getTime() + Math.floor(Math.random() * 2000) + 1000;
 }
+
 ////////CẬP NHẬT ĐIỂM////////
 function updateScore() {
     game.score = Math.floor((new Date().getTime() - game.startTime) / 100);
     chu(1280 - 50, 50, "28px Arial", "right", `Score: ${game.score}`);
-
 }
 
 function checkVaCham(anh1, anh2) {
     if (anh1.x > anh2.x + anh2.w
         || anh1.x + anh1.w < anh2.x
         || anh1.y > anh2.y + anh2.h
-        || anh1.y + anh1.h < anh2.y)
-        {
+        || anh1.y + anh1.h < anh2.y) {
         return false;
     } else {
         return true;
     }
 }
-
-
